@@ -6,42 +6,50 @@ export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
   const [status, setStatus] = useState(""); // 'success', 'error', or ''
   const { theme } = useTheme();
 
   const headingColor = theme === "dark" ? "text-white" : "text-slate-900";
-  const descriptionColor = theme === "dark" ? "text-gray-400" : "text-slate-600";
-  const inputStyles = theme === "dark"
-    ? "bg-zinc-900/60 border-zinc-700 text-white placeholder-zinc-500"
-    : "bg-white border-slate-300 text-slate-900 placeholder-slate-400";
-  const buttonStyles = theme === "dark"
-    ? "bg-white text-black hover:bg-gray-100"
-    : "bg-slate-900 text-white hover:bg-slate-800";
+  const descriptionColor =
+    theme === "dark" ? "text-gray-400" : "text-slate-600";
+  const inputStyles =
+    theme === "dark"
+      ? "bg-zinc-900/60 border-zinc-700 text-white placeholder-zinc-500"
+      : "bg-white border-slate-300 text-slate-900 placeholder-slate-400";
+  const buttonStyles =
+    theme === "dark"
+      ? "bg-white text-black hover:bg-gray-100"
+      : "bg-slate-900 text-white hover:bg-slate-800";
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.message) {
+    // Trim values to prevent empty spaces
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    ) {
       setStatus("error");
       return;
     }
 
-    // **EmailJS integration**
+    // EmailJS integration
     emailjs
       .send(
-        
-        "template_rf33337",  
-        formData,
-        "Jzl838v9XvPDaOWWR"    
+        "service_viytt6e", // Replace with your EmailJS Service ID
+        "template_cryf6z6", // Replace with your EmailJS Template ID
+        formData, // Form data object
+        "kl78yhcPi0G9Ti1Vs" // Replace with your EmailJS Public Key (if required)
       )
       .then(
         () => setStatus("success"),
@@ -57,9 +65,13 @@ export default function ContactForm() {
 
   return (
     <section className="w-full max-w-4xl mx-auto p-6">
-      <div className="rounded-2xl border border-dashed p-8"
-        style={{ borderColor: theme === "dark" ? "#3f3f46" : "#cbd5e1" }}>
-        <h2 className={`text-2xl font-bold mb-2 ${headingColor}`}>Get in Touch</h2>
+      <div
+        className="rounded-2xl border border-dashed p-8"
+        style={{ borderColor: theme === "dark" ? "#3f3f46" : "#cbd5e1" }}
+      >
+        <h2 className={`text-2xl font-bold mb-2 ${headingColor}`}>
+          Get in Touch
+        </h2>
         <p className={`text-sm mb-6 ${descriptionColor}`}>
           Have a question or want to work together? Drop me a message!
         </p>
@@ -71,7 +83,9 @@ export default function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             placeholder="Your Name"
-            className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 ${theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"} ${inputStyles}`}
+            className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+              theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"
+            } ${inputStyles}`}
           />
 
           <input
@@ -80,7 +94,9 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             placeholder="Your Email"
-            className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 ${theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"} ${inputStyles}`}
+            className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+              theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"
+            } ${inputStyles}`}
           />
 
           <textarea
@@ -89,7 +105,9 @@ export default function ContactForm() {
             onChange={handleChange}
             placeholder="Your Message"
             rows={4}
-            className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 resize-none ${theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"} ${inputStyles}`}
+            className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 resize-none ${
+              theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"
+            } ${inputStyles}`}
           />
 
           <button
