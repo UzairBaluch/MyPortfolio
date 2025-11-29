@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
+import emailjs from "@emailjs/browser";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -28,16 +29,25 @@ export default function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email || !formData.message) {
       setStatus("error");
       return;
     }
 
-    // Add your form submission logic here (e.g., send to API)
-    console.log("Form submitted:", formData);
-    setStatus("success");
-    
+    // **EmailJS integration**
+    emailjs
+      .send(
+        
+        "template_rf33337",  
+        formData,
+        "Jzl838v9XvPDaOWWR"    
+      )
+      .then(
+        () => setStatus("success"),
+        () => setStatus("error")
+      );
+
     // Reset form
     setFormData({ name: "", email: "", message: "" });
 
@@ -48,55 +58,39 @@ export default function ContactForm() {
   return (
     <section className="w-full max-w-4xl mx-auto p-6">
       <div className="rounded-2xl border border-dashed p-8"
-        style={{
-          borderColor: theme === "dark" ? "#3f3f46" : "#cbd5e1"
-        }}>
-        <h2 className={`text-2xl font-bold mb-2 ${headingColor}`}>
-          Get in Touch
-        </h2>
+        style={{ borderColor: theme === "dark" ? "#3f3f46" : "#cbd5e1" }}>
+        <h2 className={`text-2xl font-bold mb-2 ${headingColor}`}>Get in Touch</h2>
         <p className={`text-sm mb-6 ${descriptionColor}`}>
           Have a question or want to work together? Drop me a message!
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Your Name"
-              className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"
-              } ${inputStyles}`}
-            />
-          </div>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Your Name"
+            className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 ${theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"} ${inputStyles}`}
+          />
 
-          <div>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Your Email"
-              className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"
-              } ${inputStyles}`}
-            />
-          </div>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Your Email"
+            className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 ${theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"} ${inputStyles}`}
+          />
 
-          <div>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Your Message"
-              rows={4}
-              className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 resize-none ${
-                theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"
-              } ${inputStyles}`}
-            />
-          </div>
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Your Message"
+            rows={4}
+            className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 resize-none ${theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"} ${inputStyles}`}
+          />
 
           <button
             type="submit"
@@ -113,7 +107,7 @@ export default function ContactForm() {
         )}
         {status === "error" && (
           <p className="mt-4 text-sm text-red-500 text-center">
-            Please fill in all fields.
+            Please fill in all fields or try again.
           </p>
         )}
       </div>
