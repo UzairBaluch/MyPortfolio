@@ -1,0 +1,51 @@
+body {
+  background-color: #ffffff;
+  font-family: "Inter", sans-serif;
+  color: #1f2933;
+}
+
+.dark body {
+  background-color: black;
+  color: #d1d5db;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  60% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.animate-shine {
+  animation: shine 2.8s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+}
+
+@keyframes shineSweep {
+  0% {
+    transform: translateX(-130%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(130%);
+    opacity: 0;
+  }
+}
+
+.animate-shine-smooth {
+  animation: shineSweep 5s cubic-bezier(0.6, 0.2, 0.2, 0.9) infinite;
+  will-change: transform, opacity;
+}

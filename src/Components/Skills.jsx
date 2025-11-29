@@ -1,0 +1,56 @@
+// Skills.jsx
+import React from "react";
+import {
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiTailwindcss,
+  SiGithub,
+} from "react-icons/si";
+import { FaRocket, FaCode, FaCoffee } from "react-icons/fa";
+import { useTheme } from "../contexts/ThemeContext";
+
+const skills = [
+  { name: "JavaScript", icon: <SiJavascript size={14} /> },
+  { name: "TypeScript", icon: <SiTypescript size={14} /> },
+  { name: "React.js", icon: <SiReact size={14} /> },
+  { name: "Next.js", icon: <SiNextdotjs size={14} /> },
+  { name: "Node.js", icon: <SiNodedotjs size={14} /> },
+  { name: "Express.js", icon: <SiExpress size={14} /> },
+  { name: "MongoDB", icon: <SiMongodb size={14} /> },
+
+  { name: "Tailwind CSS", icon: <SiTailwindcss size={14} /> },
+  { name: "Git & GitHub", icon: <SiGithub size={14} /> },
+];
+
+export default function Skills() {
+  const { theme } = useTheme();
+
+  const headingColor = theme === "dark" ? "text-white" : "text-slate-900";
+  const chipBg =
+    theme === "dark" ? "bg-white text-black" : "bg-slate-900 text-slate-100";
+  const sectionText = theme === "dark" ? "" : "text-slate-700";
+
+  return (
+    <section className={`w-full max-w-4xl mx-auto p-6 ${sectionText}`}>
+      <h2 className={`text-2xl font-bold mb-4 ${headingColor}`}>Skills</h2>
+      <div className="flex flex-wrap items-center">
+        {skills.map((skill) => (
+          <div
+            key={skill.name}
+            className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg shadow-sm m-1 ${chipBg}`}
+          >
+            <span className="flex items-center" aria-hidden>
+              {skill.icon}
+            </span>
+            <span className="text-sm font-medium">{skill.name}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
