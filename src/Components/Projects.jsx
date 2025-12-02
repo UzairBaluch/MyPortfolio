@@ -1,13 +1,30 @@
 import { Globe, Github, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
+import queueVideo from "../assets/video/project-video.mp4";
 
 const projects = [
     {
+        title: "Queue Management System",
+        period: "2025",
+        description:
+            "A responsive React.js application for managing customer queues. Add, edit, remove customers, track status in real-time, view analytics, search/filter, and export queue data to CSV.",
+        video: {
+            src: queueVideo, // Optional: replace with GIF/video or screenshot
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        tags: ["React", "JavaScript", "CSS", "localStorage", "CRUD"],
+        website: { label: "", url: "" }, // Replace with deployed app URL
+        github: { label: "GitHub", url: "https://github.com/UzairBaluch/react-learning/tree/main/queue-management-system" },
+    },
+    {
         title: "",
         period: "",
-        description:
-            "",
+        description: "",
         video: {
             src: "",
             autoPlay: true,
@@ -23,8 +40,7 @@ const projects = [
     {
         title: "",
         period: "",
-        description:
-            "",
+        description: "",
         video: {
             src: "",
             autoPlay: true,
@@ -40,8 +56,7 @@ const projects = [
     {
         title: "",
         period: "",
-        description:
-            "",
+        description: "",
         video: {
             src: "",
             autoPlay: true,
@@ -54,7 +69,22 @@ const projects = [
         website: { label: "Website", url: "" },
         github: { label: "GitHub", url: "" },
     },
-
+    {
+        title: "",
+        period: "",
+        description: "",
+        video: {
+            src: "",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        tags: [""],
+        website: { label: "Website", url: "" },
+        github: { label: "GitHub", url: "" },
+    },
 ];
 
 const Projects = ({ limit, showViewAll = true }) => {
@@ -87,7 +117,7 @@ const Projects = ({ limit, showViewAll = true }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {items.map((project) => (
                         <div
-                            key={project.title}
+                            key={project.title || Math.random()}
                             className={`rounded-2xl flex flex-col overflow-hidden transition-all duration-300 ease-out hover:shadow-lg h-full ${cardStyles}`}
                         >
                             {project.website.url ? (
