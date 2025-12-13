@@ -3,11 +3,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import emailjs from "@emailjs/browser";
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [email, setEmail] = useState("");
   const [status, setStatus] = useState(""); // 'success', 'error', or ''
   const { theme } = useTheme();
 
@@ -23,22 +19,11 @@ export default function ContactForm() {
       ? "bg-white text-black hover:bg-gray-100"
       : "bg-slate-900 text-white hover:bg-slate-800";
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Trim values to prevent empty spaces
-    if (
-      !formData.name.trim() ||
-      !formData.email.trim() ||
-      !formData.message.trim()
-    ) {
+    if (!email.trim()) {
       setStatus("error");
       return;
     }
@@ -46,10 +31,10 @@ export default function ContactForm() {
     // EmailJS integration
     emailjs
       .send(
-        "service_viytt6e", // Replace with your EmailJS Service ID
-        "template_cryf6z6", // Replace with your EmailJS Template ID
-        formData, // Form data object
-        "kl78yhcPi0G9Ti1Vs" // Replace with your EmailJS Public Key (if required)
+        "service_viytt6e", // Your EmailJS Service ID
+        "template_cryf6z6", // Your EmailJS Template ID
+        { email }, // Form data object
+        "kl78yhcPi0G9Ti1Vs" // Your EmailJS Public Key
       )
       .then(
         () => setStatus("success"),
@@ -57,7 +42,7 @@ export default function ContactForm() {
       );
 
     // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setEmail("");
 
     // Reset status after 3 seconds
     setTimeout(() => setStatus(""), 3000);
@@ -73,39 +58,18 @@ export default function ContactForm() {
           Get in Touch
         </h2>
         <p className={`text-sm mb-6 ${descriptionColor}`}>
-          Have a question or want to work together? Drop me a message!
+          Want to hire me? Let's discuss.
+Drop your message and let's discuss about your project.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Your Name"
-            className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-              theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"
-            } ${inputStyles}`}
-          />
-
-          <input
             type="email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Your Email"
             className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-              theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"
-            } ${inputStyles}`}
-          />
-
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Your Message"
-            rows={4}
-            className={`w-full px-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 resize-none ${
               theme === "dark" ? "focus:ring-white" : "focus:ring-slate-900"
             } ${inputStyles}`}
           />
@@ -125,7 +89,7 @@ export default function ContactForm() {
         )}
         {status === "error" && (
           <p className="mt-4 text-sm text-red-500 text-center">
-            Please fill in all fields or try again.
+            Please fill the field or try again.
           </p>
         )}
       </div>
