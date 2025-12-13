@@ -49,7 +49,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="w-full max-w-4xl mx-auto p-6">
+    <section className="w-full max-w-4xl mt-20 mx-auto p-6">
       <div
         className="rounded-2xl border border-dashed p-8"
         style={{ borderColor: theme === "dark" ? "#3f3f46" : "#cbd5e1" }}
