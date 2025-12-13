@@ -54,7 +54,7 @@ export default function Footer() {
     return (
         <footer
             id="footer"
-            className="relative w-full mt-24 pt-14 pb-10 overflow-hidden mb-10"
+            className="relative w-full pt-14 pb-10 overflow-hidden mb-10"
         >
             <div className="relative max-w-4xl mx-auto px-6 flex flex-col gap-10">
                 {/* Brand & mantra */}
