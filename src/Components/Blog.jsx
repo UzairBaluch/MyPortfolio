@@ -13,13 +13,19 @@ export default function Blog() {
   const titleColor = theme === "dark" ? "text-white" : "text-slate-900";
   const descColor = theme === "dark" ? "text-gray-400" : "text-slate-600";
   const dateColor = theme === "dark" ? "text-gray-500" : "text-slate-500";
+  
+  // Add these styling variables from Projects component
+  const viewAllLink = theme === "dark" ? "border-[#c2c2c2] hover:border-gray-500 text-white" : "border-slate-400 hover:border-slate-500 text-slate-800";
+  const depthEffect = theme === "dark"
+    ? "shadow-[inset_4px_4px_12px_rgba(0,0,0,0.7),inset_-4px_-4px_12px_rgba(161,161,170,0.25)] hover:shadow-[inset_3px_3px_9px_rgba(0,0,0,0.75),inset_-3px_-3px_9px_rgba(200,200,210,0.22)]"
+    : "shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]";
 
   return (
     <section className="py-5 w-full max-w-3xl mx-auto px-6">
       {isOnBlogsPage && (
         <Link
           to="/"
-          className="inline-flex items-center gap-2 border border-dashed px-3 py-2 text-xs font-semibold rounded-lg mb-6"
+          className={`inline-flex items-center gap-2 border border-dashed px-3 py-2 text-xs font-semibold rounded-lg mb-6 transition ${viewAllLink} ${depthEffect}`}
         >
           <ArrowUpRight className="w-4 h-4 rotate-180" />
           Back to home
@@ -54,7 +60,7 @@ export default function Blog() {
         <div className="mt-6 flex justify-end">
           <Link
             to="/blogs"
-            className="inline-flex items-center gap-2 border border-dashed px-3 py-2 text-xs font-semibold rounded-lg"
+            className={`inline-flex items-center gap-2 border border-dashed px-3 py-2 text-xs font-semibold rounded-lg transition ${viewAllLink} ${depthEffect}`}
           >
             Read all blogs
             <ArrowUpRight className="w-4 h-4" />
