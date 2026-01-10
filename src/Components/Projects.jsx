@@ -10,7 +10,7 @@ const projects = [
     description:
       "A responsive React.js application for managing customer queues. Add, edit, remove customers, track status in real-time, view analytics, search/filter, and export queue data to CSV.",
     video: {
-      src: queueVideo, // Optional: replace with GIF/video or screenshot
+      src: queueVideo,
       autoPlay: true,
       loop: true,
       muted: true,
@@ -18,75 +18,35 @@ const projects = [
       className: "h-40 w-full object-cover object-top rounded-t-lg",
     },
     tags: ["React", "JavaScript", "CSS", "localStorage", "CRUD"],
-    website: { label: "", url: "" }, // Replace with deployed app URL
+    website: { label: "Live Demo", url: "" },
     github: {
       label: "GitHub",
       url: "https://github.com/UzairBaluch/react-learning/tree/main/queue-management-system",
     },
   },
   {
-    title: "",
-    period: "",
-    description: "",
+    title: "30 JavaScript Projects",
+    period: "December 2025 - January 2026",
+    description:
+      "Complete collection of 30 vanilla JavaScript projects built in 23 days. From beginner to advanced level, covering DOM manipulation, APIs, algorithms, and real-world applications. Every line coded by hand.",
     video: {
-      src: "",
-      autoPlay: true,
-      loop: true,
+      src: "", // You can add a screenshot/video later
+      autoPlay: false,
+      loop: false,
       muted: true,
       playsInline: true,
-      className: "h-40 w-full object-cover object-top rounded-t-lg",
+      className:
+        "h-40 w-full object-cover object-top rounded-t-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white text-6xl font-bold",
     },
-    tags: [""],
-    website: { label: "Website", url: "" },
-    github: { label: "GitHub", url: "" },
-  },
-  {
-    title: "",
-    period: "",
-    description: "",
-    video: {
-      src: "",
-      autoPlay: true,
-      loop: true,
-      muted: true,
-      playsInline: true,
-      className: "h-40 w-full object-cover object-top rounded-t-lg",
+    tags: ["JavaScript", "HTML", "CSS", "API", "localStorage", "30 Projects"],
+    website: {
+      label: "View All 30 Projects",
+      url: "https://uzairbaluch.github.io/javascript-learning/",
     },
-    tags: [""],
-    website: { label: "Website", url: "" },
-    github: { label: "GitHub", url: "" },
-  },
-  {
-    title: "",
-    period: "",
-    description: "",
-    video: {
-      src: "",
-      autoPlay: true,
-      loop: true,
-      muted: true,
-      playsInline: true,
-      className: "h-40 w-full object-cover object-top rounded-t-lg",
+    github: {
+      label: "GitHub",
+      url: "https://github.com/UzairBaluch/javascript-learning",
     },
-    tags: [""],
-    website: { label: "Website", url: "" },
-    github: { label: "GitHub", url: "" },
-  },
-  {
-    title: "",
-    period: "",
-    description: "",
-    video: {
-      src: "",
-      autoPlay: true,
-      loop: true,
-      muted: true,
-      playsInline: true,
-      className: "h-40 w-full object-cover object-top rounded-t-lg",
-    },
-    tags: [""],
-    website: { label: "Website", url: "" },
-    github: { label: "GitHub", url: "" },
   },
 ];
 
